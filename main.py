@@ -19,4 +19,4 @@ def diagonal_counting(n_elem):
 print(diagonal_counting(6))
 
 if __name__ == "__main__":
-    pass
+    diagonal_counting(4)
