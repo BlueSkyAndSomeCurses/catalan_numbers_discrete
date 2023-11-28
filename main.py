@@ -36,7 +36,6 @@ def ways_to_dot(n_elem):
             matrix[i][j] =matrix[i - 1][j] + matrix[i][j - 1]
     return (matrix[n_elem][n_elem]) // (n_elem + 1)
 
-print(ways_to_dot(10))
 
 if __name__ == "__main__":
-    pass
+    ways_to_dot(10)
