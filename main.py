@@ -2,7 +2,7 @@
 Catalan
 """
 
-def main(n: int) -> list[str]:
+def parentheses(n: int) -> list[str]:
     res = []
     def dfs(left, right, s):
         if len(s) == n * 2:
@@ -15,7 +15,7 @@ def main(n: int) -> list[str]:
     dfs(0, 0, '')
     return res
 
-p=main(10)
+p=parentheses(10)
 for i in p:
     print(i)
 
