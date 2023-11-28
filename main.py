@@ -3,6 +3,7 @@ Catalan
 """
 import functools
 import time
+import numpy as np
 
 
 @functools.lru_cache()
@@ -34,4 +35,9 @@ def recursive_definition(n):
 
 
 if __name__ == "__main__":
-    recursive_definition(1000)
+    # import dis
+
+    # dis.dis(catalan_recursive)
+    start = time.time()
+    recursive_definition(50)
+    print(time.time())
