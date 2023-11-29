@@ -16,7 +16,8 @@ def diagonal_counting(n_elem):
     return catalan[n_elem_div]
 
 
-print(diagonal_counting(6))
+
 
 if __name__ == "__main__":
     diagonal_counting(4)
+    print(diagonal_counting(20))
