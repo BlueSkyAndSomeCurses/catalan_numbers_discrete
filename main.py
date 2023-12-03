@@ -3,10 +3,11 @@ Catalan
 """
 import functools
 import time
-import numpy as np
+
+# import numpy as np
 
 
-@functools.lru_cache()
+@functools.lru_cache(maxsize=1000)
 def catalan_recursive(n: int):
     match n:
         case 0:
@@ -18,15 +19,11 @@ def catalan_recursive(n: int):
         case 3:
             return 5
 
-    catalan = [0 for i in range(n + 1)]
+    catalan = 0
+    for k in range(n):
+        catalan += catalan_recursive(k) * catalan_recursive(n - k - 1)
 
-    catalan[0] = 1
-    catalan[1] = 1
-    for i in range(2, n + 1):
-        for k in range(i):
-            catalan[i] += catalan_recursive(i - k - 1) * catalan_recursive(k)
-
-    return catalan[n]
+    return catalan
 
 
 def recursive_definition(n):
@@ -35,9 +32,6 @@ def recursive_definition(n):
 
 
 if __name__ == "__main__":
-    # import dis
-
-    # dis.dis(catalan_recursive)
     start = time.time()
-    recursive_definition(50)
+    recursive_definition(1000)
     print(time.time())
