@@ -1,25 +1,8 @@
 """
 Catalan
 """
-# def factorial_recursive(number):
-#     '''
-#     Recursive function, returns a factorial of number
-#     '''
-#     factorial = 1
-#     if number != 1:
-#         factorial *= (number * (factorial_recursive(number - 1)))
-#     else:
-#         return 1
-#     return factorial
-
-
-# def ways_to_dot(n_elem):
-#     '''
-#     Returns number of ways from (0,0) to (n,n)
-#     '''
-#     result = (factorial_recursive(2* n_elem) // \
-# (factorial_recursive(n_elem) * factorial_recursive(2* n_elem - n_elem))) // (n_elem + 1)
-#     return result
+import functools
+import time
 
 def ways_to_dot(n_elem):
     '''
@@ -51,11 +34,56 @@ def diagonal_counting(n_elem):
     return catalan[n_elem_div]
 
 
+@functools.lru_cache(maxsize=1000)
+def catalan_recursive(n: int):
+    match n:
+        case 0:
+            return 1
+        case 1:
+            return 1
+        case 2:
+            return 2
+        case 3:
+            return 5
+
+    catalan = 0
+    for k in range(n):
+        catalan += catalan_recursive(k) * catalan_recursive(n - k - 1)
+
+    return catalan
 
 
+def recursive_definition(n):
+    for i in range(n + 1):
+        print(i, ":", catalan_recursive(i))
+
+
+# def factorial_recursive(number):
+#     '''
+#     Recursive function, returns a factorial of number
+#     '''
+#     factorial = 1
+#     if number != 1:
+#         factorial *= (number * (factorial_recursive(number - 1)))
+#     else:
+#         return 1
+#     return factorial
+
+
+# def ways_to_dot(n_elem):
+#     '''
+#     Returns number of ways from (0,0) to (n,n)
+#     '''
+#     result = (factorial_recursive(2* n_elem) // \
+# (factorial_recursive(n_elem) * factorial_recursive(2* n_elem - n_elem))) // (n_elem + 1)
+#     return result
 if __name__ == "__main__":
     diagonal_counting(4)
     ways_to_dot(10)
     print(diagonal_counting(20))
     print(ways_to_dot(10))
+    
+    start = time.time()
+    recursive_definition(1000)
+    print(time.time())
 
