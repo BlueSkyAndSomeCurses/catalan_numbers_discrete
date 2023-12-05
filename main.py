@@ -77,6 +77,38 @@ def recursive_definition(n):
 #     result = (factorial_recursive(2* n_elem) // \
 # (factorial_recursive(n_elem) * factorial_recursive(2* n_elem - n_elem))) // (n_elem + 1)
 #     return result
+
+def catalan_powers(x, numb):
+    def factorial(m):
+        '''
+        factorial
+        '''
+        if m == 0:
+            return 1
+        return m * factorial(m - 1)
+
+    def ceshka(n, k):
+        '''
+        Counts number of nth number by ceshka
+        '''
+        return factorial(n) // (factorial(k) * factorial(n - k))
+
+    def counted_catalan_number(n):
+        '''
+        Counts by fromula of counting C(n) = (1/(n+1)) * C(2 * n, n)
+        '''
+        return ceshka(2 * n, n) // (n + 1)
+
+    def catalan_power_series_method(x, numb_of_first_terms):
+        '''
+        Finds sum of n terms.
+        '''
+        series = [counted_catalan_number(n) * (x ** n) for n in range(numb_of_first_terms)]
+        return sum(series)
+
+    return catalan_power_series_method(x, numb)
+
+
 if __name__ == "__main__":
     diagonal_counting(4)
     ways_to_dot(10)
