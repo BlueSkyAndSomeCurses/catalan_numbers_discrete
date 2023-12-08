@@ -15,8 +15,7 @@ def parentheses(n: int) -> list[str]:
     dfs(0, 0, '')
     return res
 
-p=parentheses(10)
-for i in p:
+for i in n: 
     print(i)
 
 if __name__ == "__main__":
