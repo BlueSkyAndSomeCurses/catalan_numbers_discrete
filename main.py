@@ -121,10 +121,6 @@ def parentheses(n: int) -> list[str]:
     dfs(0, 0, '')
     return res
 
-p=parentheses(10)
-for i in p:
-    print(i)
-
 if __name__ == "__main__":
     diagonal_counting(4)
     ways_to_dot(10)
