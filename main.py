@@ -4,10 +4,11 @@ Catalan
 import functools
 import time
 
+
 def ways_to_dot(n_elem):
-    '''
+    """
     Returns how many ways you can find in nxn matrix
-    '''
+    """
     matrix = [[0] * (n_elem + 1) for _ in range(n_elem + 1)]
 
     for i in range(n_elem + 1):
@@ -16,13 +17,14 @@ def ways_to_dot(n_elem):
         matrix[0][j] = 1
     for i in range(1, n_elem + 1):
         for j in range(1, n_elem + 1):
-            matrix[i][j] =matrix[i - 1][j] + matrix[i][j - 1]
+            matrix[i][j] = matrix[i - 1][j] + matrix[i][j - 1]
     return (matrix[n_elem][n_elem]) // (n_elem + 1)
 
+
 def diagonal_counting(n_elem):
-    '''
+    """
     Return a number of diagonals in Polygon
-    '''
+    """
     n_elem_div = n_elem // 2
     if n_elem == 0:
         return 1
@@ -126,8 +128,7 @@ if __name__ == "__main__":
     ways_to_dot(10)
     print(diagonal_counting(20))
     print(ways_to_dot(10))
-    
+
     start = time.time()
     recursive_definition(1000)
     print(time.time())
-
