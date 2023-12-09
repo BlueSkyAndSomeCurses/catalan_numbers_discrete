@@ -80,48 +80,55 @@ def recursive_definition(n):
 # (factorial_recursive(n_elem) * factorial_recursive(2* n_elem - n_elem))) // (n_elem + 1)
 #     return result
 
+
 def catalan_powers(x, numb):
     def factorial(m):
-        '''
+        """
         factorial
-        '''
+        """
         if m == 0:
             return 1
         return m * factorial(m - 1)
 
     def ceshka(n, k):
-        '''
+        """
         Counts number of nth number by ceshka
-        '''
+        """
         return factorial(n) // (factorial(k) * factorial(n - k))
 
     def counted_catalan_number(n):
-        '''
+        """
         Counts by fromula of counting C(n) = (1/(n+1)) * C(2 * n, n)
-        '''
+        """
         return ceshka(2 * n, n) // (n + 1)
 
     def catalan_power_series_method(x, numb_of_first_terms):
-        '''
+        """
         Finds sum of n terms.
-        '''
-        series = [counted_catalan_number(n) * (x ** n) for n in range(numb_of_first_terms)]
+        """
+        series = [
+            counted_catalan_number(n) * (x**n) for n in range(numb_of_first_terms)
+        ]
         return sum(series)
 
     return catalan_power_series_method(x, numb)
 
+
 def parentheses(n: int) -> list[str]:
     res = []
+
     def dfs(left, right, s):
         if len(s) == n * 2:
             res.append(s)
             return
         if left < n:
-            dfs(left + 1, right, s + '(')
+            dfs(left + 1, right, s + "(")
         if right < left:
-            dfs(left, right + 1, s + ')')
-    dfs(0, 0, '')
+            dfs(left, right + 1, s + ")")
+
+    dfs(0, 0, "")
     return res
+
 
 if __name__ == "__main__":
     diagonal_counting(4)
@@ -132,3 +139,6 @@ if __name__ == "__main__":
     start = time.time()
     recursive_definition(1000)
     print(time.time())
+
+    for i in range(10):
+        print(len(parentheses(i)))
