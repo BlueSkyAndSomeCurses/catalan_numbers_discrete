@@ -24,19 +24,20 @@ def ways_to_dot(n_elem):
     return (matrix[n_elem][n_elem]) // (n_elem + 1) # повертаємо кількість у нижній правій точці і ділимо на n-1, щоб була відповідність до чисел Каталана
 
 
-def diagonal_counting(n_elem):
+# приймає на вхід число діаголаней для n для 2n-кутника
+def diagonal_counting(diagonal):
     """
     Return a number of diagonals in Polygon
     """
-    n_elem_div = n_elem // 2
-    if n_elem == 0:
+    if diagonal == 0: # Якщо n_elem дорівнює 0, то функція повертає 1. Коли немає жодної вершини, отже, немає діагоналей
         return 1
-    catalan = [0] * (n_elem_div + 1)
-    catalan[0] = 1
-    for i in range(1, n_elem_div + 1):
-        for j in range(i):
-            catalan[i] += catalan[j] * catalan[i - 1 - j]
-    return catalan[n_elem_div]
+    catalan = [0] * (diagonal + 1) # створюємо список, в який будемо додавати числа каталана
+    catalan[0] = 1 # перше число каталана
+    # обчислюємо число каталана за допомогою двох попередніх членів. 
+    for i in range(1, diagonal + 1): # ітерується в рамках від 1 до половини введеного числа
+        for j in range(i): # попереднє за i число
+            catalan[i] += catalan[j] * catalan[i - 1 - j] 
+    return catalan[diagonal]
 
 
 @functools.lru_cache(maxsize=1000)
