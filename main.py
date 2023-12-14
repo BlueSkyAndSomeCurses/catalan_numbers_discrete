@@ -4,21 +4,24 @@ Catalan
 import functools
 import time
 
-
+# обчислює кількість способів з`єднати верхній лівий і нижній правий кут матриці n x n (числа Каталана). 
+# Крок може бути лише вправо або вниз.
+# кількість шляхів до будь-якої точки у матриці можна розрахувати
+# якщо використати кількість шляхів до двох попередніх точок - верхньої і лівої
 def ways_to_dot(n_elem):
     """
     Returns how many ways you can find in nxn matrix
     """
-    matrix = [[0] * (n_elem + 1) for _ in range(n_elem + 1)]
+    matrix = [[0] * (n_elem + 1) for _ in range(n_elem + 1)] # створення матриці (n+1) x (n+1) (не булевої) , заповнення її нулями
 
-    for i in range(n_elem + 1):
+    for i in range(n_elem + 1): # перший рядок і перший стовпчик - 1, бо інсує лише 1 спосіб дістатися до них. Вниз або вправо.
         matrix[i][0] = 1
     for j in range(n_elem + 1):
         matrix[0][j] = 1
-    for i in range(1, n_elem + 1):
+    for i in range(1, n_elem + 1): # рахуємо для кожної точки, це буде сума двох точок, верхньої і лівої
         for j in range(1, n_elem + 1):
             matrix[i][j] = matrix[i - 1][j] + matrix[i][j - 1]
-    return (matrix[n_elem][n_elem]) // (n_elem + 1)
+    return (matrix[n_elem][n_elem]) // (n_elem + 1) # повертаємо кількість у нижній правій точці і ділимо на n-1, щоб була відповідність до чисел Каталана
 
 
 def diagonal_counting(n_elem):
