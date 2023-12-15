@@ -110,10 +110,8 @@ def catalan_powers(x, numb):
         """
         Finds sum of n terms.
         """
-        series = [
-            counted_catalan_number(n) * (x**n) for n in range(numb_of_first_terms)
-        ]
-        return sum(series)
+        series = [counted_catalan_number(n) * (x ** n) for n in range(numb_of_first_terms)]
+        return series
 
     return catalan_power_series_method(x, numb)
 
